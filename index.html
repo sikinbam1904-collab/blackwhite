@@ -1765,7 +1765,7 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
                 
             ],
             shopCategories: [
-                {id:'block', title:'Block', subtitle:'สินค้า Block', sectionTitle:'𝒢r݁o݂upིྀ݁', icon:'🎀'},
+                {id:'block', title:'Block', subtitle:'สินค้า Block', sectionTitle:'𝒢r݁o݂upིྀ݁', icon:'🎀'},
                 {id:'toon', title:'Toon', subtitle:'สินค้า Toon', sectionTitle:'Toon ♡', icon:'🌙'},
                 {id:'deco', title:'Deco', subtitle:'สินค้า Deco', sectionTitle:'Deco ♡', icon:'🍭'},
                 {id:'other', title:'Other', subtitle:'สินค้าอื่น ๆ', sectionTitle:'Other ♡', icon:'⭐'}
@@ -1774,10 +1774,10 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
                 browserTitle:'ชื่อร้านของคุณ ♡', loadingTitle:'ชื่อร้านของคุณ ♡', loadingText:'กำลังดึงข้อมูลร้าน...',
                 mainMenu:[
                     {id:'payment',title:'𝒫݂a݁y݂m݁e݂nt݂',subtitle:'ช่องทางการชำระเงิน',icon:'fas fa-wallet',visible:true},
-                    {id:'line',title:'C݂݁𝒪n݂t݁a݂c݁𝓉',subtitle:'ช่องทางติดต่อ',icon:'fas fa-address-book',visible:true},
-                    {id:'checkq',title:'C݂݁he݂ck݁ 𝓠',subtitle:'เข็คคิวงาน',icon:'fas fa-calendar-check',visible:true},
-                    {id:'reviews',title:'𝓡݁e݂vi݂e݁w݂݁s݁',subtitle:'รีวิว & เครดิตของร้าน',icon:'fas fa-heart',visible:true},
-                    {id:'points',title:'Sta݂݁mp݂ c݁ar݂݁𝒹',subtitle:'บัตรสะสมแต้ม',icon:'fas fa-stamp',visible:true},
+                    {id:'line',title:'C݂݁𝒪n݂t݁a݂c݁𝓉',subtitle:'ช่องทางติดต่อ',icon:'fas fa-address-book',visible:true},
+                    {id:'checkq',title:'C݂݁he݂ck݁ 𝓠',subtitle:'เข็คคิวงาน',icon:'fas fa-calendar-check',visible:true},
+                    {id:'reviews',title:'𝓡݁e݂vi݂e݁w݂݁s݁',subtitle:'รีวิว & เครดิตของร้าน',icon:'fas fa-heart',visible:true},
+                    {id:'points',title:'Sta݂݁mp݂ c݁ar݂݁𝒹',subtitle:'บัตรสะสมแต้ม',icon:'fas fa-stamp',visible:true},
                     {id:'clarification',title:'𝒞la݁rif݂ic݁a݂tio݁n݂',subtitle:'เงื่อนไข-ชี้แจง',icon:'fas fa-clipboard-list',visible:true}
                 ],
                 music:{enabled:true,url:'',autoStart:false,loop:true,volume:0.65},
@@ -2622,8 +2622,7 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
                 const note = document.createElement('div');
                 note.className = 'mt-3 bg-[#FFFFFF] p-4 rounded-2xl border border-[#FFFFFF] text-center';
                 const title = document.createElement('strong');
-                title.className = 'text-xs'; title.textContent = 'โ݁น้ต݂สลิ݂݁៰ปโอ݁นเงิ݂นּ݁༈
-( ไม่โน้ต݂โอ݁นใ݁หม่݂ 0.01 )';
+                title.className = 'text-xs'; title.textContent = '♡ โน้ตสลิปโอนเงิน';
                 const text = document.createElement('p');
                 text.className = 'text-sm font-bold mt-2 bg-white rounded-xl p-2';
                 text.textContent = siteConfig.slipNoteText || '';
@@ -3772,7 +3771,7 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
             const nav = document.getElementById('shopBottomBar');
             if (!nav) return;
             nav.replaceChildren();
-            const tabs = [{id:'home', title:'𝓗oི݁m݁e ݂', icon:'𓆩♡𓆪'}, ...siteConfig.shopCategories];
+            const tabs = [{id:'home', title:'𝓗oི݁m݁e ݂', icon:'𓆩♡𓆪'}, ...siteConfig.shopCategories];
             tabs.forEach(item => {
                 const button = document.createElement('button');
                 button.type = 'button';
