@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="no-store">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ชื่อร้านของคุณ ♡</title>
+    <title>𝒮o݂݁utℳ݁e݂i݂݁ ྐ♬</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -922,6 +922,76 @@
         .product-photo-viewer-stage { min-height: 0; flex: 1; display: flex; overflow: auto; background: #FFFFFF; }
         .product-photo-viewer-controls { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 16px; color: #000000; font-size: 12px; font-weight: 700; }
         .product-photo-viewer-controls button { min-width: 40px; min-height: 40px; color: #000000; }
+
+        /* ===== Review star UI fix ===== */
+        /* Contrast rule: white surfaces always use black text. */
+        .bg-white.text-white,
+        .bg-\[\#FFFFFF\].text-white {
+            color: #000000 !important;
+        }
+
+        #starSelection i,
+        #editStarSelection i {
+            color: #555555 !important;
+            opacity: 1 !important;
+            text-shadow: none !important;
+            transition: color .18s ease, transform .18s ease, filter .18s ease;
+        }
+        #starSelection i.is-selected,
+        #editStarSelection i.is-selected {
+            color: #FFD166 !important;
+            filter: drop-shadow(0 1px 2px rgba(255, 209, 102, .35));
+        }
+        #starSelection i:hover,
+        #editStarSelection i:hover {
+            transform: scale(1.08);
+        }
+        .review-star-counts {
+            display: grid;
+            gap: 7px;
+            margin: 10px 0 12px;
+        }
+        .review-star-count-row {
+            display: grid;
+            grid-template-columns: 34px 1fr 38px;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .review-star-label {
+            white-space: nowrap;
+            text-align: left;
+        }
+        .review-star-bar {
+            height: 7px;
+            border-radius: 999px;
+            overflow: hidden;
+            background: #2b2b2b;
+            border: 1px solid #555555;
+        }
+        .review-star-bar-fill {
+            height: 100%;
+            width: 0;
+            border-radius: inherit;
+            background: #FFD166;
+            transition: width .25s ease;
+        }
+        .review-star-count-number {
+            text-align: right;
+            min-width: 28px;
+        }
+        .review-filter-count {
+            display: inline-block;
+            min-width: 18px;
+            margin-left: 3px;
+            padding: 1px 5px;
+            border-radius: 999px;
+            font-size: 10px;
+            line-height: 1.2;
+            background: rgba(255,255,255,.12);
+            border: 1px solid currentColor;
+        }
     </style>
 
 <style id="blackWhiteThemeOverride">
@@ -1170,17 +1240,17 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
             <div class="mb-3 flex items-center justify-between bg-[#FFFFFF] p-2.5 rounded-xl border border-[#FFFFFF]">
                 <span class="text-xs font-bold text-[#000000]">ให้คะแนน:</span>
                 <div class="inline-flex gap-1.5" id="starSelection">
-                    <i class="fas fa-star text-white text-lg cursor-pointer transition-colors" onclick="setRating(1)"></i>
-                    <i class="fas fa-star text-white text-lg cursor-pointer transition-colors" onclick="setRating(2)"></i>
-                    <i class="fas fa-star text-white text-lg cursor-pointer transition-colors" onclick="setRating(3)"></i>
-                    <i class="fas fa-star text-white text-lg cursor-pointer transition-colors" onclick="setRating(4)"></i>
-                    <i class="fas fa-star text-white text-lg cursor-pointer transition-colors" onclick="setRating(5)"></i>
+                    <i class="fas fa-star text-lg cursor-pointer transition-colors" onclick="setRating(1)" aria-label="1 ดาว"></i>
+                    <i class="fas fa-star text-lg cursor-pointer transition-colors" onclick="setRating(2)" aria-label="2 ดาว"></i>
+                    <i class="fas fa-star text-lg cursor-pointer transition-colors" onclick="setRating(3)" aria-label="3 ดาว"></i>
+                    <i class="fas fa-star text-lg cursor-pointer transition-colors" onclick="setRating(4)" aria-label="4 ดาว"></i>
+                    <i class="fas fa-star text-lg cursor-pointer transition-colors" onclick="setRating(5)" aria-label="5 ดาว"></i>
                 </div>
             </div>
 
             <!-- แนบรูปภาพได้ทุกดาว -->
             <div id="evidenceContainer" class="mb-4 p-3 bg-white rounded-xl border border-black">
-                <label class="text-[11px] font-bold text-white block mb-2"><i class="fas fa-image mr-1"></i>แนบรูปภาพสินค้า / ผลงาน (ถ้ามี) 🙏</label>
+                <label class="text-[11px] font-bold text-[#000000] block mb-2"><i class="fas fa-image mr-1"></i>แนบรูปภาพสินค้า / ผลงาน (ถ้ามี) 🙏</label>
                 <input type="file" id="evidenceFile" accept="image/*" class="w-full text-xs text-[#000000] file:mr-3 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-[#FFFFFF] file:text-[#000000] hover:file:bg-[#FFFFFF] transition-colors cursor-pointer outline-none">
             </div>
 
@@ -1480,7 +1550,7 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
             </div>
 
             <hr class="my-4 border-[#FFFFFF]">
-            <button onclick="logoutAdmin()" class="w-full bg-white text-white font-bold py-2 rounded-xl text-xs border border-black">
+            <button onclick="logoutAdmin()" class="w-full bg-white text-[#000000] font-bold py-2 rounded-xl text-xs border border-black">
                 <i class="fas fa-sign-out-alt mr-1"></i> ออกจากระบบแอดมิน
             </button>
         </div>
@@ -1532,11 +1602,11 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
             <div class="mb-3 flex items-center justify-between bg-[#FFFFFF] p-2 rounded-xl border border-[#FFFFFF]">
                 <span class="text-xs font-bold text-[#000000]">คะแนน:</span>
                 <div class="inline-flex gap-1.5" id="editStarSelection">
-                    <i class="fas fa-star text-white text-lg cursor-pointer" onclick="setEditRating(1)"></i>
-                    <i class="fas fa-star text-white text-lg cursor-pointer" onclick="setEditRating(2)"></i>
-                    <i class="fas fa-star text-white text-lg cursor-pointer" onclick="setEditRating(3)"></i>
-                    <i class="fas fa-star text-white text-lg cursor-pointer" onclick="setEditRating(4)"></i>
-                    <i class="fas fa-star text-white text-lg cursor-pointer" onclick="setEditRating(5)"></i>
+                    <i class="fas fa-star text-lg cursor-pointer" onclick="setEditRating(1)" aria-label="1 ดาว"></i>
+                    <i class="fas fa-star text-lg cursor-pointer" onclick="setEditRating(2)" aria-label="2 ดาว"></i>
+                    <i class="fas fa-star text-lg cursor-pointer" onclick="setEditRating(3)" aria-label="3 ดาว"></i>
+                    <i class="fas fa-star text-lg cursor-pointer" onclick="setEditRating(4)" aria-label="4 ดาว"></i>
+                    <i class="fas fa-star text-lg cursor-pointer" onclick="setEditRating(5)" aria-label="5 ดาว"></i>
                 </div>
             </div>
 
@@ -2932,17 +3002,17 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
                 queueItemsHtml = `<div class="text-center text-xs text-[#000000] py-8 bg-white rounded-2xl border border-[#FFFFFF]">ไม่พบข้อมูลคิวงานค่ะ</div>`;
             } else {
                 paginatedQueues.forEach((q) => {
-                    let statusBg = 'bg-white text-white';
-                    if (q.status === 'กำลังจัดทำ') statusBg = 'bg-white text-white';
-                    if (q.status === 'เสร็จสิ้นแล้ว') statusBg = 'bg-white text-white';
-                    if (q.status === 'ยกเลิก') statusBg = 'bg-white text-white';
+                    let statusBg = 'bg-white text-[#000000]';
+                    if (q.status === 'กำลังจัดทำ') statusBg = 'bg-white text-[#000000]';
+                    if (q.status === 'เสร็จสิ้นแล้ว') statusBg = 'bg-white text-[#000000]';
+                    if (q.status === 'ยกเลิก') statusBg = 'bg-white text-[#000000]';
 
                     let adminQueueBtns = isAdminLoggedIn ? `
                         <div class="flex gap-2 justify-end border-t border-[#FFFFFF] pt-2 mt-2">
                             <button onclick="openEditQueueModal('${q.id}')" class="text-[10px] font-bold bg-[#FFFFFF] text-[#000000] px-2.5 py-1 rounded-lg border border-[#FFFFFF]">
                                 <i class="fas fa-edit mr-1"></i>แก้ไข
                             </button>
-                            <button onclick="deleteQueue('${q.id}')" class="text-[10px] font-bold bg-white text-white px-2.5 py-1 rounded-lg border border-black">
+                            <button onclick="deleteQueue('${q.id}')" class="text-[10px] font-bold bg-white text-[#000000] px-2.5 py-1 rounded-lg border border-black">
                                 <i class="fas fa-trash-alt mr-1"></i>ลบ
                             </button>
                         </div>
@@ -3107,16 +3177,11 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
         function closeReviewModal() { reviewModal.classList.remove('active'); }
 
         function setRating(rating) {
-            currentRating = rating;
+            currentRating = Math.max(0, Math.min(5, Number(rating) || 0));
             const stars = document.querySelectorAll('#starSelection i');
             stars.forEach((star, index) => {
-                if (index < rating) {
-                    star.classList.remove('text-white');
-                    star.classList.add('text-white', 'drop-shadow-sm');
-                } else {
-                    star.classList.remove('text-white', 'drop-shadow-sm');
-                    star.classList.add('text-white');
-                }
+                star.classList.toggle('is-selected', index < currentRating);
+                star.setAttribute('aria-label', `${index + 1} ดาว`);
             });
         }
 
@@ -3234,7 +3299,7 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
         }
 
         function filterReviewByStar(star) {
-            reviewStarFilter = star;
+            reviewStarFilter = Number(star) || 0;
             currentReviewPage = 1;
             renderReviewsList();
         }
@@ -3247,13 +3312,30 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
         function renderReviewsList() {
             const container = document.getElementById('reviewsListContainer');
             if (!container) return;
-            
-            const totalCount = reviewsData.length;
-            const avgRating = totalCount > 0 
-                ? (reviewsData.reduce((acc, r) => acc + r.rating, 0) / totalCount).toFixed(1) 
-                : '5.0';
 
-            let filtered = reviewsData.filter(r => reviewStarFilter === 0 || r.rating === reviewStarFilter);
+            // Normalize rating values so Firestore values stored as "5" and 5
+            // are treated identically.
+            const normalizedReviews = reviewsData.map(r => ({
+                ...r,
+                rating: Math.max(0, Math.min(5, Number(r.rating) || 0))
+            }));
+
+            const totalCount = normalizedReviews.length;
+            const starCounts = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
+            normalizedReviews.forEach(r => {
+                if (r.rating >= 1 && r.rating <= 5) starCounts[r.rating]++;
+            });
+
+            const avgRating = totalCount > 0
+                ? (normalizedReviews.reduce((acc, r) => acc + r.rating, 0) / totalCount).toFixed(1)
+                : '0.0';
+
+            const maxStarCount = Math.max(1, ...Object.values(starCounts));
+            const currentFilter = Number(reviewStarFilter) || 0;
+
+            const filtered = normalizedReviews.filter(r =>
+                currentFilter === 0 || r.rating === currentFilter
+            );
 
             const pageSize = 10;
             const totalPages = Math.ceil(filtered.length / pageSize) || 1;
@@ -3263,55 +3345,81 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
             const paginatedReviews = filtered.slice(startIdx, startIdx + pageSize);
 
             let headerSummary = `
-                <div class="bg-[#FFFFFF] border border-[#FFFFFF] p-3 rounded-2xl mb-3 flex items-center justify-between text-center">
-                    <div>
-                        <div class="text-[10px] font-bold text-[#000000]">รีวิวทั้งหมด</div>
-                        <div class="text-base font-extrabold text-[#000000]">${totalCount} รายการ</div>
-                    </div>
-                    <div class="h-8 w-[1px] bg-[#FFFFFF]"></div>
-                    <div>
-                        <div class="text-[10px] font-bold text-[#000000]">คะแนนเฉลี่ยร้าน</div>
-                        <div class="text-base font-extrabold text-white flex items-center justify-center gap-1">
-                            ${avgRating} <i class="fas fa-star text-xs"></i>
+                <div class="bg-[#000000] border border-[#FFFFFF] p-3 rounded-2xl mb-3 text-center">
+                    <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                            <div class="text-[10px] font-bold text-white">รีวิวทั้งหมด</div>
+                            <div class="text-base font-extrabold text-white">${totalCount} รายการ</div>
                         </div>
+                        <div class="h-9 w-[1px] bg-[#FFFFFF]"></div>
+                        <div class="flex-1">
+                            <div class="text-[10px] font-bold text-white">คะแนนเฉลี่ยร้าน</div>
+                            <div class="text-base font-extrabold text-white flex items-center justify-center gap-1">
+                                ${avgRating} <i class="fas fa-star text-xs" style="color:#FFD166 !important;"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-star-counts mt-3">
+                        ${[5,4,3,2,1].map(star => {
+                            const count = starCounts[star];
+                            const width = totalCount ? (count / maxStarCount) * 100 : 0;
+                            return `
+                                <div class="review-star-count-row">
+                                    <button type="button"
+                                        onclick="filterReviewByStar(${star})"
+                                        class="review-star-label text-white">
+                                        ${star} <i class="fas fa-star" style="color:#FFD166 !important;"></i>
+                                    </button>
+                                    <div class="review-star-bar" aria-label="${star} ดาว ${count} รีวิว">
+                                        <div class="review-star-bar-fill" style="width:${width}%"></div>
+                                    </div>
+                                    <span class="review-star-count-number text-white">${count}</span>
+                                </div>
+                            `;
+                        }).join('')}
                     </div>
                 </div>
             `;
 
             let filterBtns = `
                 <div class="flex gap-1 overflow-x-auto pb-2 mb-2">
-                    <button onclick="filterReviewByStar(0)" class="pg-btn ${reviewStarFilter === 0 ? 'active' : ''}">ทั้งหมด</button>
-                    <button onclick="filterReviewByStar(5)" class="pg-btn ${reviewStarFilter === 5 ? 'active' : ''}">5 ⭐</button>
-                    <button onclick="filterReviewByStar(4)" class="pg-btn ${reviewStarFilter === 4 ? 'active' : ''}">4 ⭐</button>
-                    <button onclick="filterReviewByStar(3)" class="pg-btn ${reviewStarFilter === 3 ? 'active' : ''}">3 ⭐</button>
-                    <button onclick="filterReviewByStar(2)" class="pg-btn ${reviewStarFilter === 2 ? 'active' : ''}">2 ⭐</button>
-                    <button onclick="filterReviewByStar(1)" class="pg-btn ${reviewStarFilter === 1 ? 'active' : ''}">1 ⭐</button>
+                    <button onclick="filterReviewByStar(0)" class="pg-btn ${currentFilter === 0 ? 'active' : ''}">
+                        ทั้งหมด <span class="review-filter-count">${totalCount}</span>
+                    </button>
+                    ${[5,4,3,2,1].map(star => `
+                        <button onclick="filterReviewByStar(${star})" class="pg-btn ${currentFilter === star ? 'active' : ''}">
+                            ${star} ⭐ <span class="review-filter-count">${starCounts[star]}</span>
+                        </button>
+                    `).join('')}
                 </div>
             `;
 
             let listHtml = '';
-            if(paginatedReviews.length === 0) {
-                listHtml = '<div class="text-center text-xs text-[#000000] py-8 bg-white rounded-2xl border border-[#FFFFFF]">ไม่พบรายการรีวิวในหมวดหมู่นี้ค่ะ</div>';
+            if (paginatedReviews.length === 0) {
+                listHtml = '<div class="text-center text-xs text-white py-8 bg-black rounded-2xl border border-white">ไม่พบรายการรีวิวในหมวดหมู่นี้ค่ะ</div>';
             } else {
                 paginatedReviews.forEach((review) => {
                     let starsHtml = '';
-                    for(let i=0; i<5; i++) {
-                        starsHtml += i < review.rating 
-                            ? '<i class="fas fa-star text-white text-[10px] mr-0.5 drop-shadow-sm"></i>' 
-                            : '<i class="fas fa-star text-white text-[10px] mr-0.5"></i>';
+                    for (let i = 0; i < 5; i++) {
+                        starsHtml += i < review.rating
+                            ? '<i class="fas fa-star text-[11px] mr-0.5" style="color:#FFD166 !important;"></i>'
+                            : '<i class="fas fa-star text-[11px] mr-0.5" style="color:#555555 !important;"></i>';
                     }
 
-                    let evidenceHtml = review.evidence ? `<div class="mt-2.5"><img src="${review.evidence}" alt="Evidence" class="w-full h-36 object-cover rounded-xl border border-[#FFFFFF] shadow-sm"></div>` : '';
+                    let evidenceHtml = review.evidence
+                        ? `<div class="mt-2.5"><img src="${review.evidence}" alt="Evidence" class="w-full h-36 object-cover rounded-xl border border-[#FFFFFF] shadow-sm"></div>`
+                        : '';
 
                     let adminControls = isAdminLoggedIn ? `
                         <div class="flex gap-2 mt-2 justify-end border-t border-[#FFFFFF] pt-2">
                             <button onclick="openEditReviewModal('${review.id}')" class="text-[10px] font-bold bg-[#FFFFFF] text-[#000000] px-2.5 py-1 rounded-lg border border-[#FFFFFF]">
                                 <i class="fas fa-pencil-alt mr-1"></i>แก้ไข
                             </button>
-                            <button onclick="deleteReview('${review.id}')" class="text-[10px] font-bold bg-white text-white px-2.5 py-1 rounded-lg border border-black">
+                            <button onclick="deleteReview('${review.id}')" class="text-[10px] font-bold bg-white text-[#000000] px-2.5 py-1 rounded-lg border border-black">
                                 <i class="fas fa-trash-alt mr-1"></i>ลบ
                             </button>
-                            ${review.evidence ? `<button onclick="deleteReviewImage('${review.id}')" class="text-[10px] font-bold bg-white text-white px-2.5 py-1 rounded-lg border border-black">ลบภาพรีวิว</button>` : ''}
+                            ${review.evidence ? `<button onclick="deleteReviewImage('${review.id}')" class="text-[10px] font-bold bg-white text-[#000000] px-2.5 py-1 rounded-lg border border-black">ลบภาพรีวิว</button>` : ''}
                         </div>
                     ` : '';
 
@@ -3327,7 +3435,7 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
                                         สินค้า: <span class="font-semibold">${review.channel}</span>
                                     </div>
                                 </div>
-                                <div class="text-[9px] text-[#000000] font-medium bg-[#FFFFFF] px-2 py-1 rounded-lg">${review.date}</div>
+                                <div class="text-[9px] text-[#000000] font-medium bg-[#FFFFFF] px-2 py-1 rounded-lg">${review.date || ''}</div>
                             </div>
                             <div class="ml-7 my-1 flex items-center bg-[#FFFFFF] w-max px-2.5 py-0.5 rounded-full border border-[#FFFFFF]">
                                 ${starsHtml}
@@ -3710,16 +3818,11 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
         }
 
         function setEditRating(rating) {
-            editCurrentRating = rating;
+            editCurrentRating = Math.max(0, Math.min(5, Number(rating) || 0));
             const stars = document.querySelectorAll('#editStarSelection i');
             stars.forEach((star, index) => {
-                if (index < rating) {
-                    star.classList.remove('text-white');
-                    star.classList.add('text-white');
-                } else {
-                    star.classList.remove('text-white');
-                    star.classList.add('text-white');
-                }
+                star.classList.toggle('is-selected', index < editCurrentRating);
+                star.setAttribute('aria-label', `${index + 1} ดาว`);
             });
         }
 
@@ -3771,7 +3874,7 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
             const nav = document.getElementById('shopBottomBar');
             if (!nav) return;
             nav.replaceChildren();
-            const tabs = [{id:'home', title:'𝓗oི݁m݁e ݂', icon:'𓆩♡𓆪'}, ...siteConfig.shopCategories];
+            const tabs = [{id:'home', title:'𝓗oི݁m݁e ݂', icon:' ྐ♰'}, ...siteConfig.shopCategories];
             tabs.forEach(item => {
                 const button = document.createElement('button');
                 button.type = 'button';
@@ -4841,7 +4944,7 @@ body:not(.startup-loading) .device-container .app-card .app-icon svg * {
                 if(order.status==='submitted') {
                     const controls=document.createElement('div');controls.className='flex gap-2';
                     const confirm=document.createElement('button');confirm.className='bg-[#000000] text-white p-2 rounded-lg flex-1 font-bold';confirm.textContent='ยืนยันเงินและส่งสินค้า';confirm.onclick=()=>approveGuestOrder(order.id,confirm);
-                    const reject=document.createElement('button');reject.className='bg-white text-white p-2 rounded-lg';reject.textContent='ขอสลิปใหม่';reject.onclick=()=>rejectGuestSlip(order.id);
+                    const reject=document.createElement('button');reject.className='bg-white text-[#000000] p-2 rounded-lg';reject.textContent='ขอสลิปใหม่';reject.onclick=()=>rejectGuestSlip(order.id);
                     controls.append(confirm,reject);card.append(controls);
                 }
                 if(order.status==='paid') (order.items||[]).filter(item=>item.deliveryType==='custom').forEach(item=>{
